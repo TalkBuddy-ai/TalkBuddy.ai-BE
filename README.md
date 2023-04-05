@@ -14,6 +14,7 @@
 ```
 npm install
 ```
+#### CREATE A .env file (you can find a .env.example) a sample of the .env file.
 
 ## Run the project
 #### run the Node.js server in development mode.
@@ -21,7 +22,10 @@ npm install
 npm run dev
 OR yarn dev
 ```
-#### now the project will be running on (http://localhost:3000), don't forget to add a PORT to your .env file
+#### now the project will be running on (http://localhost:3000)
+
+## Open.ai api Key
+#### you should generate a secret key from here (https://platform.openai.com/account/api-keys).
 
 ## Formatting
 #### Detect Lint issues
