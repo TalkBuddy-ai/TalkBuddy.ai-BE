@@ -16,7 +16,7 @@ npm install
 ```
 
 ## Run the project
-#### runs the server in development mode
+#### run the Node.js server in development mode.
 ```
 npm run dev
 OR yarn dev
@@ -41,4 +41,9 @@ OR yarn pretty
 ```
 #### Husky: (precommit command that will fix lint issues)
 
-
+## Build
+#### will compile the code in JavaScript inside a dist directory
+```
+npm run build
+OR yarn build
+```
