@@ -4,6 +4,7 @@ import http from 'http';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import routes from './src/routes/index.js';
+import errorHandler from './src/middlewares/errorHandler.middleware';
 
 const app: Express = express();
 
@@ -18,6 +19,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // it parses Cookie header and populate req.cookies with an object keyed by the cookie names
 app.use(cookieParser());
+
+// custom error handler middleware
+app.use(errorHandler);
 
 app.use('/api/v1', routes);
 

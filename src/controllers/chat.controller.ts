@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Configuration, OpenAIApi } from 'openai';
 import "dotenv/config";
+import { CustomError } from '../models/customError.model';
 
 const openAIConfig = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
@@ -22,8 +23,6 @@ export const chatCompletion = async (req: Request, res: Response) => {
 
     res.status(200).json({ text });
   } catch (err: any) {
-    res.status(500).json({
-      message: err?.message,
-    });
+    throw new CustomError('Technical issue', 500, err.message);
   }
 };
