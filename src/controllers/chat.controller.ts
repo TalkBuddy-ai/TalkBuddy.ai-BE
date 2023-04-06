@@ -1,7 +1,6 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { Configuration, OpenAIApi } from 'openai';
 import "dotenv/config";
-import { CustomError } from '../models/customError.model';
 
 const openAIConfig = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
@@ -9,10 +8,13 @@ const openAIConfig = new Configuration({
 
 const openapi = new OpenAIApi(openAIConfig);
 
-export const chatCompletion = async (req: Request, res: Response) => {
+export const chatCompletion = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { prompt } = req.body;
 
+    if (!prompt) {
+      next({message: 'Please enter a message', status: 400 });
+    }
     const answer = await openapi.createCompletion({
       model: "text-davinci-003",
       prompt: prompt,
@@ -21,8 +23,8 @@ export const chatCompletion = async (req: Request, res: Response) => {
 
     const text = answer.data?.choices?.[0]?.text;
 
-    res.status(200).json({ text });
+    res.status(200).json({ message: text, success: true });
   } catch (err: any) {
-    throw new CustomError('Technical issue', 500, err.message);
+    next(err);
   }
 };

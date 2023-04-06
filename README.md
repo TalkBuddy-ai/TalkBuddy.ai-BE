@@ -14,7 +14,7 @@
 ```
 npm install
 ```
-#### CREATE A .env file (you can find a .env.example) a sample of the .env file.
+#### create a .env file (you can find a .env.example) a sample of the .env file.
 
 ## Run the project
 #### run the Node.js server in development mode.
