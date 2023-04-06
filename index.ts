@@ -1,8 +1,7 @@
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import http from 'http';
-import routes from './src/routes/index.js';
+// import routes from './src/routes/index.js';
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 
@@ -12,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api/v1', routes);
+// app.use('/api/v1', routes);
 
 const port = process.env.PORT;
 
