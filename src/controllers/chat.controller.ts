@@ -14,6 +14,7 @@ export const chatCompletion = async (req: Request, res: Response, next: NextFunc
 
     if (!prompt) {
       next({message: 'Please enter a message', status: 400 });
+      return;
     }
     const answer = await openapi.createCompletion({
       model: "text-davinci-003",
