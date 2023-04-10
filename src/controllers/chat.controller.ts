@@ -29,3 +29,18 @@ export const chatCompletion = async (req: Request, res: Response, next: NextFunc
     next(err);
   }
 };
+
+export const getChat = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { prompt } = req.body;
+
+    if (!prompt) {
+      next({message: 'Please enter a message', status: 400 });
+      return;
+    }
+    
+    res.status(200).json({ message: prompt, success: true });
+  } catch (err: any) {
+    next(err);
+  }
+};
