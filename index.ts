@@ -34,7 +34,7 @@ const port = process.env.PORT;
 const server = http.createServer(app);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
+  res.send('Welcome to TlkBuddy.ai Server 😍');
 });
 
 server.listen(port, () => {
