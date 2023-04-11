@@ -13,13 +13,13 @@ export const chatCompletion = async (req: Request, res: Response, next: NextFunc
     const { prompt } = req.body;
 
     if (!prompt) {
-      next({message: 'Please enter a message', status: 400 });
+      next({ message: 'Please enter a message', statusCode: 400 });
       return;
     }
     const answer = await openapi.createCompletion({
       model: "text-davinci-003",
       prompt: prompt,
-      temperature: 0, // When temperature is above 0, submitting the same prompt results in different completions each time.
+      temperature: 0,
     });
 
     const text = answer.data?.choices?.[0]?.text;
