@@ -34,7 +34,7 @@ const port = process.env.PORT;
 const server = http.createServer(app);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to TlkBuddy.ai Server 😍');
+  res.send('Welcome to TalkBuddy.ai Server 😍');
 });
 
 server.listen(port, () => {
