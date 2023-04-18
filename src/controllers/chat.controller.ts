@@ -20,6 +20,7 @@ export const chatCompletion = async (req: Request, res: Response, next: NextFunc
       model: "text-davinci-003",
       prompt: prompt,
       temperature: 0,
+      max_tokens: 2048
     });
 
     const text = answer.data?.choices?.[0]?.text;
