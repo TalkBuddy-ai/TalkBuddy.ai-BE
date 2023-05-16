@@ -9,13 +9,19 @@ export const transcribe = async (req: Request, res: Response, next: NextFunction
     res.status(404).send('No files were uploaded');
   }
   let file: any = req.files?.file;
+  let filePath = "";
   if (!file) {
     res.status(404).send('No files were uploaded');
   }
-  const { name, data } = file;
-  const cwd = process.cwd();
-  const filePath = path.join(cwd, 'static', 'uploads', name);
-  await fs.writeFile(filePath, data);
+  try {
+    const { name, data } = file;
+    const cwd = process.cwd();
+    const filePath = path.join(cwd, 'static', 'uploads', name);
+    await fs.writeFile(filePath, data);
+  } catch(err) {
+    res.status(500).send('issue while writing the file');
+  }
+
 
   // Transcribe audio
   if (whisper) {
