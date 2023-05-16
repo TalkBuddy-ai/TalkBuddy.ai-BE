@@ -11,10 +11,10 @@ class Whisper {
     this.baseUrl = 'https://api.openai.com/v1/audio';
   }
 
-  async transcribe(filePath: string, modelName: string) {
+  async transcribe(filepath: any) {
     const formData = new FormData();
-    formData.append('file', fs.createReadStream(filePath));
-    formData.append('model', modelName);
+    formData.append('file', fs.createReadStream(filepath));
+    formData.append('model', 'whisper-1');
 
     try {
       const response = await axios.post(`${this.baseUrl}/transcriptions`, formData, {
