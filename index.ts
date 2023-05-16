@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import 'dotenv/config';
 import routes from './src/routes/index.js';
 import errorHandler from './src/middlewares/errorHandler.middleware';
+import fileUpload from "express-fileupload";
 
 const app: Express = express();
 
@@ -16,7 +17,13 @@ app.use(cors());
 app.use(express.json());
 
 // It parses incoming requests with urlencoded payloads
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false, limit: 10000, // Limit payload size in bytes
+  parameterLimit: 2, // Limit number of form items on payload 
+}));
+
+// const upload = multer({ dest: './dist/src/uploads/' });
+app.use(fileUpload());
 
 // it parses Cookie header and populate req.cookies with an object keyed by the cookie names
 app.use(cookieParser());
