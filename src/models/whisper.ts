@@ -12,7 +12,7 @@ class Whisper {
   }
 
   async transcribe(filepath: any) {
-    const formData = new FormData();
+    const formData: any = new FormData();
     formData.append('file', fs.createReadStream(filepath));
     formData.append('model', 'whisper-1');
 
@@ -25,13 +25,13 @@ class Whisper {
       });
 
       return response.data.text;
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error.response.data.error);
     }
   }
 
   async translate(filePath: string, modelName: string, targetLanguage: string) {
-    const formData = new FormData();
+    const formData: any = new FormData();
     formData.append('file', fs.createReadStream(filePath));
     formData.append('model', modelName);
     formData.append('target_language', targetLanguage);
@@ -45,7 +45,7 @@ class Whisper {
       });
 
       return response.data.text;
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error.response.data.error);
     }
   }

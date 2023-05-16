@@ -5,10 +5,10 @@ import Whisper from "../models/whisper";
 
 export const transcribe = async (req: Request, res: Response, next: NextFunction) => {
   const whisper = process.env.OPENAI_API_KEY && new Whisper(process.env.OPENAI_API_KEY);
-  if (!req.files || req.files.length === 0) {
+  if (!req.files) {
     res.status(404).send('No files were uploaded');
   }
-  let file = req.files?.file;
+  let file: any = req.files?.file;
   if (!file) {
     res.status(404).send('No files were uploaded');
   }
