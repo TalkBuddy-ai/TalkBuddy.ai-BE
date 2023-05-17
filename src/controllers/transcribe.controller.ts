@@ -27,12 +27,18 @@ export const transcribe = async (req: Request, res: Response, next: NextFunction
   console.log("Transcibing", filePath)
   if (whisper) {
     whisper.transcribe(filePath)
-    .then(text => {
-      res.status(200).json({text});
-      console.log(text);
-    })
-    .catch(error => {
-      res.status(500).json({error: error});
-    });
+      .then(text => {
+        res.status(200).json({ text });
+      }).then(() => {
+        // delete the file from server
+        fs.unlink(filePath).then(() => {
+          console.log("Delete File successfully.");
+        }).catch(err => {
+          throw err;
+        })
+      })
+      .catch(error => {
+        res.status(500).json({ error: error });
+      });
   }
 }
