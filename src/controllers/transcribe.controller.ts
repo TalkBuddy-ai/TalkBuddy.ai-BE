@@ -19,7 +19,7 @@ export const transcribe = async (req: Request, res: Response, next: NextFunction
     const filePath = path.join(cwd, 'static', 'uploads', name);
     await fs.writeFile(filePath, data);
   } catch(err) {
-    res.status(500).send('issue while writing the file');
+    return res.status(500).send({message: 'issue while writing the file', error: err});
   }
 
 
