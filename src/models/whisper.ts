@@ -12,6 +12,7 @@ class Whisper {
   }
 
   async transcribe(filepath: any) {
+    console.log("Whisper")
     const formData: any = new FormData();
     formData.append('file', fs.createReadStream(filepath));
     formData.append('model', 'whisper-1');
@@ -26,7 +27,8 @@ class Whisper {
 
       return response.data.text;
     } catch (error: any) {
-      throw new Error(error.response.data.error);
+      console.log("error", error);
+      throw new Error(error.response.data);
     }
   }
 

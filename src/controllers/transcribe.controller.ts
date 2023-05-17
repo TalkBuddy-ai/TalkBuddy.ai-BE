@@ -24,6 +24,7 @@ export const transcribe = async (req: Request, res: Response, next: NextFunction
 
 
   // Transcribe audio
+  console.log("Transcibing")
   if (whisper) {
     whisper.transcribe(filePath)
     .then(text => {
@@ -31,7 +32,7 @@ export const transcribe = async (req: Request, res: Response, next: NextFunction
       console.log(text);
     })
     .catch(error => {
-      res.status(500).json({error});
+      res.status(500).json({error: error});
     });
   }
 }
