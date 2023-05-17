@@ -16,7 +16,7 @@ export const transcribe = async (req: Request, res: Response, next: NextFunction
   try {
     const { name, data } = file;
     const cwd = process.cwd();
-    const filePath = path.join(cwd, 'static', 'uploads', name);
+    filePath = path.join(cwd, 'static', 'uploads', name);
     await fs.writeFile(filePath, data);
   } catch(err) {
     return res.status(500).send({message: 'issue while writing the file', error: err});
@@ -24,7 +24,7 @@ export const transcribe = async (req: Request, res: Response, next: NextFunction
 
 
   // Transcribe audio
-  console.log("Transcibing")
+  console.log("Transcibing", filePath)
   if (whisper) {
     whisper.transcribe(filePath)
     .then(text => {
