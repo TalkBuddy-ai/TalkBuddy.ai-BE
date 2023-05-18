@@ -15,8 +15,11 @@ export const transcribe = async (req: Request, res: Response, next: NextFunction
   }
   try {
     const { name, data } = file;
+    const splittedName = name.split('.');
+    const extension = splittedName[splittedName.length - 1];
+    const fileName = `uploadedFile.${extension}`
     const cwd = process.cwd();
-    filePath = path.join(cwd, 'static', 'uploads', name);
+    filePath = path.join(cwd, 'static', 'uploads', fileName);
     await fs.writeFile(filePath, data);
   } catch(err) {
     return res.status(500).send({message: 'issue while writing the file', error: err});
